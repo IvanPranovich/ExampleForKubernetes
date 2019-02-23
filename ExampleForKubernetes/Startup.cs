@@ -68,6 +68,17 @@ namespace ExampleForKubernetes
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            MigrateDatabase(app); 
+        }
+
+        private static void MigrateDatabase(IApplicationBuilder app)
+        {
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetRequiredService<SampleContext>();
+                context.Database.Migrate();
+            }
         }
     }
 }
