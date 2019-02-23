@@ -3,29 +3,25 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using ExampleForKubernetes.ModelBuilder;
 using Microsoft.AspNetCore.Mvc;
 using ExampleForKubernetes.Models;
-using Microsoft.Extensions.Caching.Distributed;
 
 namespace ExampleForKubernetes.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IDistributedCache _cache;
+        private readonly IHomeIndexModelBuilder _homeIndexModelBuilder;
 
-        public HomeController(IDistributedCache cache)
+        public HomeController(IHomeIndexModelBuilder homeIndexModelBuilder)
         {
-            _cache = cache;
+            _homeIndexModelBuilder = homeIndexModelBuilder;
         }
 
         public IActionResult Index()
         {
-            // Quick example of DistributedCache usage
-            const string cacheKey = "mykey";
-            var value = _cache.GetString(cacheKey);
-            var counter = string.IsNullOrWhiteSpace(value) ? 1 : Convert.ToInt32(value) + 1;
-            _cache.SetString(cacheKey, counter.ToString());
-            return View(model: counter.ToString());
+            var model = _homeIndexModelBuilder.GetHomeIndexModel();
+            return View(model);
         }
 
         public IActionResult Privacy()

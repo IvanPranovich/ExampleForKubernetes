@@ -1,4 +1,4 @@
-﻿@model string
+﻿@model HomeIndexModel
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -8,5 +8,5 @@
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
 <div>
-    <h1 class="display-1">RedisCache: @Model</h1>
+    <h1 class="display-1">Page Request Counter: @Model.RedisCounter</h1>
 </div>
