@@ -25,7 +25,7 @@ namespace ExampleForKubernetes.Controllers
             var value = _cache.GetString(cacheKey);
             var counter = string.IsNullOrWhiteSpace(value) ? 1 : Convert.ToInt32(value) + 1;
             _cache.SetString(cacheKey, counter.ToString());
-            return View(counter.ToString());
+            return View(model: counter.ToString());
         }
 
         public IActionResult Privacy()
