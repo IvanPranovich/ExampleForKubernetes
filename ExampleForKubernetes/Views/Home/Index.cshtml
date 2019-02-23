@@ -8,5 +8,10 @@
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
 <div>
-    <h1 class="display-1">Page Request Counter: @Model.RedisCounter</h1>
+    <h1 class="display-1">Page Request Counter: <b>@Model.RedisCounter</b></h1>
+    <h1>City count: <b>@Model.Cities.Count</b></h1>
+    @foreach (var city in Model.Cities)
+    {
+        <h3>@city</h3>
+    }
 </div>
