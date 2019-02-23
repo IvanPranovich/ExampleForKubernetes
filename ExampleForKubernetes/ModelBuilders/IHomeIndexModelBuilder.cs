@@ -1,6 +1,6 @@
 ﻿using ExampleForKubernetes.Models;
 
-namespace ExampleForKubernetes.ModelBuilder
+namespace ExampleForKubernetes.ModelBuilders
 {
     public interface IHomeIndexModelBuilder
     {

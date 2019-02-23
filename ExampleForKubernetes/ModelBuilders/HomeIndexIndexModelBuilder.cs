@@ -2,7 +2,7 @@
 using ExampleForKubernetes.Models;
 using Microsoft.Extensions.Caching.Distributed;
 
-namespace ExampleForKubernetes.ModelBuilder
+namespace ExampleForKubernetes.ModelBuilders
 {
     public class HomeIndexIndexModelBuilder : IHomeIndexModelBuilder
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using ExampleForKubernetes.ModelBuilder;
+using ExampleForKubernetes.ModelBuilders;
 using Microsoft.AspNetCore.Mvc;
 using ExampleForKubernetes.Models;
 
