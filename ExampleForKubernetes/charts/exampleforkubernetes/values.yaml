@@ -4,8 +4,9 @@
 fullnameOverride: exampleforkubernetes
 replicaCount: 1
 image:
-  repository: exampleforkubernetes
-  tag: stable
+  registry: docker.io
+  repository: ivanpranovitch/exampleforkubernetes
+  tag: first
   pullPolicy: IfNotPresent
 imagePullSecrets: []
   # Optionally specify an array of imagePullSecrets.
@@ -15,8 +16,9 @@ imagePullSecrets: []
   # This uses credentials from secret "myRegistryKeySecretName".
   # - name: myRegistryKeySecretName
 service:
-  type: ClusterIP
+  type: NodePort
   port: 80
+  nodePort: 30003
 
 probes:
   enabled: false
