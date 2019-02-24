@@ -27,6 +27,12 @@
       "commandName": "Docker",
       "launchBrowser": true,
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}"
+    },
+    "RunInLocalKubernetes": {
+      "commandName": "Executable",
+      "executablePath": "powershell",
+      "commandLineArgs": "E:\\programming\\Projects\\ExampleForKubernetes\\ExampleForKubernetes\\charts\\launchInLocalKubernetes.ps1",
+      "workingDirectory": "E:\\programming\\Projects\\ExampleForKubernetes\\ExampleForKubernetes\\charts\\"
     }
   }
 }
