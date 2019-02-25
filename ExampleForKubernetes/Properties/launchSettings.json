@@ -31,8 +31,8 @@
     "RunInLocalKubernetes": {
       "commandName": "Executable",
       "executablePath": "powershell",
-      "commandLineArgs": "E:\\programming\\Projects\\ExampleForKubernetes\\ExampleForKubernetes\\charts\\launchInLocalKubernetes.ps1",
-      "workingDirectory": "E:\\programming\\Projects\\ExampleForKubernetes\\ExampleForKubernetes\\charts\\"
+      "commandLineArgs": "$(ProjectDir)\\charts\\launchInLocalKubernetes.ps1",
+      "workingDirectory": "$(ProjectDir)\\charts"
     }
   }
 }
