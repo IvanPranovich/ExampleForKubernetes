@@ -1,0 +1,1 @@
+helm install stable/mssql-linux -f charts/mssql-linux/values.yaml --namespace=helloworld --name=mysql
