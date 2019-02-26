@@ -6,5 +6,7 @@ namespace ExampleForKubernetes.Models
     {
         public int RedisCounter { get; set; }
         public List<string> Cities { get; set; }
+
+        public string Config { get; set; }
     }
 }
