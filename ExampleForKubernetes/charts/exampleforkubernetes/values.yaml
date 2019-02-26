@@ -6,8 +6,8 @@ replicaCount: 1
 image:
   registry: docker.io
   repository: ivanpranovitch/exampleforkubernetes
-  tag: v2
-  pullPolicy: IfNotPresent
+  tag: v6
+  pullPolicy: Always
 imagePullSecrets: []
   # Optionally specify an array of imagePullSecrets.
   # Secrets must be manually created in the namespace.
@@ -16,7 +16,7 @@ imagePullSecrets: []
   # This uses credentials from secret "myRegistryKeySecretName".
   # - name: myRegistryKeySecretName
 service:
-  type: NodePort
+  type: LoadBalancer
   port: 80
   nodePort: 30003
 
@@ -35,7 +35,7 @@ ingress:
     #   hosts:
     #     - chart-example.local
 volumesecrets: 
-    connectionstring: secret-appsettings
+    connectionstring: "secret-appsettings"
 secrets: {}
   # Optionally specify a set of secret objects whose values
   # will be injected as environment variables by default.

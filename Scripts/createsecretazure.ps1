@@ -1,1 +1,1 @@
-kubectl create secret generic secret-appsettings --from-file=./appsettings.secrets.azure.json
+kubectl create secret generic secret-appsettings --from-file=appsettings.secrets.json
