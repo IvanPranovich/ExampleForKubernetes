@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using ExampleForKubernetes.Data;
 using ExampleForKubernetes.Models;
@@ -19,12 +20,25 @@ namespace ExampleForKubernetes.ModelBuilders
 
         public HomeIndexModel GetHomeIndexModel()
         {
-            var cities = _dbContext.Cities.Select(c => $"{c.Name} ({c.Country})").ToList();
+            var cities = GetCities();
             return new HomeIndexModel
             {
                 RedisCounter = GetRedisCounter(),
                 Cities = cities,
             };
+        }
+
+        private List<string> GetCities()
+        {
+            try
+            {
+                return _dbContext.Cities.Select(c => $"{c.Name} ({c.Country})").ToList();
+            }
+            catch (Exception e)
+            {
+                // Quick plug
+                return null;
+            }
         }
 
         private int GetRedisCounter()

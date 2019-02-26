@@ -9,9 +9,16 @@
 </div>
 <div>
     <h1 class="display-1">Page Request Counter: <b>@Model.RedisCounter</b></h1>
-    <h1>City count: <b>@Model.Cities.Count</b></h1>
-    @foreach (var city in Model.Cities)
+    @if (Model.Cities == null)
     {
-        <h3>@city</h3>
+        <h2>Can't retrieve Ms Sql Server data</h2>
+    }
+    else
+    {
+         <h1>City count: <b>@Model.Cities.Count</b></h1>
+         foreach (var city in Model.Cities)
+         {
+             <h3>@city</h3>
+         }
     }
 </div>

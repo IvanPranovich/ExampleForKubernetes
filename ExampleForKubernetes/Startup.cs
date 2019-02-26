@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using StackExchange.Redis;
 
 namespace ExampleForKubernetes
@@ -54,7 +55,7 @@ namespace ExampleForKubernetes
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
@@ -75,15 +76,24 @@ namespace ExampleForKubernetes
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            MigrateDatabase(app); 
+            MigrateDatabase(app, loggerFactory); 
         }
 
-        private static void MigrateDatabase(IApplicationBuilder app)
+        private static void MigrateDatabase(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
-            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            var logger = loggerFactory.CreateLogger<Startup>();
+            try
             {
-                var context = serviceScope.ServiceProvider.GetRequiredService<SampleContext>();
-                context.Database.Migrate();
+                using (var serviceScope =
+                    app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+                {
+                    var context = serviceScope.ServiceProvider.GetRequiredService<SampleContext>();
+                    context.Database.Migrate();
+                }
+            }
+            catch (Exception e)
+            {
+                logger.LogError(e, "Can't migrate MsSqlServer");
             }
         }
     }
