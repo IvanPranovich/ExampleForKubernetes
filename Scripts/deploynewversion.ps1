@@ -1,0 +1,1 @@
+kubectl set image deployment/exampleforkubernetes exampleforkubernetes=ivanpranovitch/exampleforkubernetes:v5
