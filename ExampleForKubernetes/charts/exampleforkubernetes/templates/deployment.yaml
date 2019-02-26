@@ -53,6 +53,18 @@ spec:
             {{- end }}
             {{- end }}
           resources:
+          {{- if .Values.volumesecrets }}
+          volumeMounts: 
+          - name: exampleforkubernetessecret
+            mountPath: /app/secret
+            readOnly: true
+          {{- end }}
+      {{- if .Values.volumesecrets }}
+      volumes:
+      - name: exampleforkubernetessecret
+        secret:
+          secretName: {{ .Values.volumesecrets.connectionstring }}
+      {{- end }}
 {{ toYaml .Values.resources | indent 12 }}
     {{- with .Values.imagePullSecrets }}
       imagePullSecrets:

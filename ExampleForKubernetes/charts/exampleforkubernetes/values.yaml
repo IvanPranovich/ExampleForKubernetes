@@ -6,7 +6,7 @@ replicaCount: 1
 image:
   registry: docker.io
   repository: ivanpranovitch/exampleforkubernetes
-  tag: first
+  tag: v2
   pullPolicy: IfNotPresent
 imagePullSecrets: []
   # Optionally specify an array of imagePullSecrets.
@@ -34,6 +34,8 @@ ingress:
     # - secretName: chart-example-tls
     #   hosts:
     #     - chart-example.local
+volumesecrets: 
+    connectionstring: secret-appsettings
 secrets: {}
   # Optionally specify a set of secret objects whose values
   # will be injected as environment variables by default.
