@@ -22,8 +22,8 @@ namespace ExampleForKubernetes
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json")
-                .AddJsonFile("secrets/appsettings.secrets.json", optional: true)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile("secret/appsettings.secret.json", optional: true, reloadOnChange: true)
                 .AddEnvironmentVariables();
 
             Configuration = builder.Build();
@@ -52,6 +52,7 @@ namespace ExampleForKubernetes
             services.AddDbContext<SampleContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SqlServerConnection")));
 
             services.AddTransient<IHomeIndexModelBuilder, HomeIndexIndexModelBuilder>();
+            services.AddTransient<IConfiguration>(provider => Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
