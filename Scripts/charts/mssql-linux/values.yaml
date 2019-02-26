@@ -19,7 +19,7 @@ image:
 service:
   # If headless is set to TRUE then the service type is ignored
   headless: false
-  type: NodePort
+  type: LoadBalancer
   port: 1433
   annotations: {}
   labels: {}
